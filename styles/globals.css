@@ -1,0 +1,151 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Smooth scrolling */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-background-light text-foreground-light dark:bg-background-dark dark:text-foreground-dark;
+  @apply font-sans antialiased;
+  background-attachment: fixed;
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(120, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(255, 119, 198, 0.3) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(120, 119, 198, 0.2) 0%, transparent 50%);
+}
+
+.dark body {
+  background-image: 
+    radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(59, 130, 246, 0.05) 0%, transparent 50%);
+}
+
+/* Glass morphism effect */
+.glass {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.dark .glass {
+  background: rgba(0, 0, 0, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-gray-100 dark:bg-gray-800;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-300 dark:bg-gray-600 rounded-full;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-gray-400 dark:bg-gray-500;
+}
+
+/* Coin flip styles */
+.coin {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  perspective: 1000px;
+  position: relative;
+  cursor: pointer;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+.coin:hover {
+  transform: scale(1.05);
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.2));
+}
+
+.coin .side {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 32px;
+  backface-visibility: hidden;
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.1),
+    0 5px 15px rgba(0, 0, 0, 0.07),
+    inset 0 1px 0 rgba(255, 255, 255, 0.3);
+  border: 3px solid rgba(255, 255, 255, 0.2);
+}
+
+.coin .heads {
+  background: linear-gradient(145deg, #ffd700, #ffed4e, #ffd700);
+  color: #8b4513;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transform: rotateY(0deg);
+}
+
+.coin .tails {
+  background: linear-gradient(145deg, #c0c0c0, #e6e6e6, #c0c0c0);
+  color: #4a4a4a;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  transform: rotateY(180deg);
+}
+
+.coin.flipping {
+  animation: flip 2s ease-in-out forwards;
+}
+
+/* Custom button styles */
+.btn-primary {
+  @apply bg-gradient-to-r from-blue-500 to-purple-600 hover:from-blue-600 hover:to-purple-700;
+  @apply text-white font-semibold py-3 px-6 rounded-xl;
+  @apply shadow-lg hover:shadow-xl transform hover:scale-105;
+  @apply transition-all duration-200 ease-in-out;
+  @apply border-0 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:focus:ring-blue-800;
+}
+
+.btn-secondary {
+  @apply bg-gradient-to-r from-purple-500 to-pink-600 hover:from-purple-600 hover:to-pink-700;
+  @apply text-white font-semibold py-3 px-6 rounded-xl;
+  @apply shadow-lg hover:shadow-xl transform hover:scale-105;
+  @apply transition-all duration-200 ease-in-out;
+  @apply border-0 focus:outline-none focus:ring-4 focus:ring-purple-300 dark:focus:ring-purple-800;
+}
+
+.btn-success {
+  @apply bg-gradient-to-r from-green-500 to-emerald-600 hover:from-green-600 hover:to-emerald-700;
+  @apply text-white font-semibold py-3 px-6 rounded-xl;
+  @apply shadow-lg hover:shadow-xl transform hover:scale-105;
+  @apply transition-all duration-200 ease-in-out;
+  @apply border-0 focus:outline-none focus:ring-4 focus:ring-green-300 dark:focus:ring-green-800;
+}
+
+/* Floating animation */
+.float {
+  animation: float 6s ease-in-out infinite;
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateY(0);
+  }
+  50% {
+    transform: rotateY(900deg);
+  }
+  100% {
+    transform: rotateY(1800deg);
+  }
+}
