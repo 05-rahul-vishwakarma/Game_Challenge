@@ -7,6 +7,11 @@ export const initSocketServer = (res: NextApiResponseServerIO) => {
     const io = new Server(res.socket.server as any, {
       path: '/api/socket',
       addTrailingSlash: false,
+       cors: {
+        origin: process.env.RENDER_EXTERNAL_URL || "*",
+        methods: ["GET", "POST"]
+      },
+      transports: ['websocket', 'polling']
     });
 
     io.on('connection', (socket) => {
